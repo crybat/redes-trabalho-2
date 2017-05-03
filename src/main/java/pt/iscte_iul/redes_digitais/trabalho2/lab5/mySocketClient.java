@@ -6,6 +6,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketTimeoutException;
 import java.util.HashMap;
 
+@SuppressWarnings("Duplicates")
 public class mySocketClient extends mySocket {
 	static private int counter = 0;
 	final private int WAIT_R = 2000; // Espera pela PDU R - em miliseg.

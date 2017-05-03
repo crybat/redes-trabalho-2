@@ -52,8 +52,8 @@ public class TCPserver {
         		int bytesRead = is.read(data);
         		long endTime = System.currentTimeMillis();        		
         		
-        		if (bytesRead <= 0) { // -1 indica fecho da ligação pelo producer
-        			System.out.println("Producer fechou a ligação!");
+        		if (bytesRead <= 0) { // -1 indica fecho da ligação pelo client
+        			System.out.println("Client fechou a ligação!");
         			break;
         		} else {
         			System.out.println("Recebidos "+bytesRead+" bytes em "+
