@@ -1,4 +1,4 @@
-package pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_3;
+package pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_4;
 
 import pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_1.EmissorApp;
 import pt.iscte_iul.redes_digitais.trabalho2.lab5.myPDU;
@@ -10,11 +10,11 @@ import static java.lang.String.format;
 import static pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_1.EmissorApp.NMSG;
 
 /**
- * Cenário 3 D/D/1
+ * Cenário 4 M/D/1
  * Aceita um argumento, taxa de utilização do sistema, P =  {0.1,0.25,0.5,0.75}
  */
 @SuppressWarnings("Duplicates")
-public class Emissor3App {
+public class Emissor4App {
 
     private static final int DATA_SIZE = 200;
     private static final int KBPS = 200000;
@@ -25,7 +25,6 @@ public class Emissor3App {
         final int pduSize = DATA_SIZE * 8 + myPDU.HEADER_SIZE * 8;
         final double serviceRate = KBPS / pduSize;
         final double arrivalRate = Double.valueOf(args[0]) * serviceRate;
-        final long messageGenerationInterval = (long) (1000 * (1 / arrivalRate)); // * 1000 para millis
         final byte[] data = EmissorApp.createBytes(DATA_SIZE);
 
         // Identificação do SAP local
@@ -37,15 +36,16 @@ public class Emissor3App {
         System.out.println("LocalIP: " + localSocket.getLocalAddress().toString());
         System.out.println("LocalPort: " + localSocket.getLocalPort());
         System.out.println(format("PDU Size: %d bits; Data size: %d bits", pduSize, DATA_SIZE * 8));
-        System.out.println(format("Sleep time: %d ms", messageGenerationInterval));
+        System.out.println(format("taxa de utilização do sistema, P = %f", arrivalRate));
 
 
-        InetAddress IPdestino = InetAddress.getByName("127.0.0.2");
-        InetSocketAddress SAPdestino = new InetSocketAddress(IPdestino, 30000);
+        final InetAddress IPdestino = InetAddress.getByName("127.0.0.2");
+        final InetSocketAddress SAPdestino = new InetSocketAddress(IPdestino, 30000);
 
-        sendData(localSocket, SAPdestino, data, messageGenerationInterval);
+        sendData(localSocket, SAPdestino, data, arrivalRate);
         localSocket.join();
 
+        System.out.println();
         System.out.println(format("Total time: %dms", localSocket.totalTime));
         System.out.println(format("Total time waiting for ack: %dms", localSocket.totalTimeWaitingForAck));
         System.out.println(format("Total time waiting in queue: %dms", localSocket.totalTimeWaitingInQueue));
@@ -55,9 +55,9 @@ public class Emissor3App {
 
     private static void sendData(
         mySocketClient localSocket, InetSocketAddress SAPdestino,
-        byte[] data, long sleepTime
+        byte[] data, double arrivalRate
     ) throws UnknownHostException, InterruptedException {
-
+        System.out.println("Sleepy time...");
         // Envio de NMSG mensagens com um tamanho de args[1] bytes cada
         for (int i = 0; i < NMSG; i++) {
             // Identificação do SAP destino
@@ -69,7 +69,12 @@ public class Emissor3App {
 
             // Tempo de espera entre gerações de pacotes - M (intervalo exponencial negativo)
             //interval = -1.0/ARRIVAL_RATE*Math.log(Math.random());
-            Thread.sleep(sleepTime);
+            final long millis = (long) (1000 * (-1.0 / (arrivalRate * Math.log(Math.random()))));
+            if (i % 10 == 0) {
+                System.out.println();
+            }
+            System.out.print(format("%d ms,", millis));
+            Thread.sleep(millis);
         }
     }
 }
