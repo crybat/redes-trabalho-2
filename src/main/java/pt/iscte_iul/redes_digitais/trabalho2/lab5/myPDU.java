@@ -5,6 +5,8 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class myPDU {
+
+    public static final int DATA_SHIFT = 4 + 4 + 8; // 16
     // Enumerado para os diferentes tipos de myPDU
     public enum Type {
         I(0), R(1);
@@ -49,7 +51,7 @@ public class myPDU {
         // Criaçao de uma myPDU a partir da IDU recebida via socket.
         // A myPDU vai ser extraida dos dados recebidos via UDP - udp
         byte[] myPDUbytes = udp.getData();
-        byte[] data = new byte[udp.getData().length - (4 + 4 + 8)];
+        byte[] data = new byte[udp.getData().length - DATA_SHIFT];
 
         // Copiar os 4 bytes de type do myPCI (bytes 0 a 3 da myPDU)
         int type_value = 0;
@@ -83,9 +85,9 @@ public class myPDU {
     public byte[] toBytes() {
         int PDUsize;
         if (userIDU == null) {
-            PDUsize = 4 + 4 + 8; // Tamanho do type + nSeq + long
+            PDUsize = DATA_SHIFT; // Tamanho do type + nSeq + long
         } else {
-            PDUsize = 4 + 4 + 8 + userIDU.getData().length; // Tamanho do type + nSeq + long + dadosUser
+            PDUsize = DATA_SHIFT + userIDU.getData().length; // Tamanho do type + nSeq + long + dadosUser
         }
         byte[] myPDUbytes = new byte[PDUsize];
 

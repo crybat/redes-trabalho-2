@@ -30,8 +30,10 @@ public class ClientApp extends Thread {
 	    } catch (UnknownHostException e) {	
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+		} catch (SocketException e) {
+			e.printStackTrace();
 		}
-        
+
 		// Envio de 25 mensagens ('A' a 'Y')- com um tamanho de 100 bytes cada
 		for (int i=0; i<25; i++) {
 			byte[] data = new byte[100];
