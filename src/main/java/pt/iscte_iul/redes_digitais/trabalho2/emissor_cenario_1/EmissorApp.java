@@ -1,4 +1,4 @@
-package pt.iscte_iul.redes_digitais.trabalho2.emissor;
+package pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_1;
 
 import pt.iscte_iul.redes_digitais.trabalho2.lab5.mySocketClient;
 
@@ -6,6 +6,7 @@ import java.net.*;
 
 import static java.lang.String.format;
 
+@SuppressWarnings("Duplicates")
 public class EmissorApp {
 
     public static final int NMSG = 250;
@@ -57,27 +58,12 @@ public class EmissorApp {
             // Criação do datagrama UDP
             final DatagramPacket p = new DatagramPacket(data, data.length, SAPdestino);
 
-            final long beginTime = System.currentTimeMillis();
             // Envio do datagrama UDP
             localSocket.send(p);
-            final long endTime = System.currentTimeMillis();
-            totalTime += endTime - beginTime;
-
-//            System.out.println("Colocados no SAP " + p.getLength() + " bytes com destino a "
-//                + p.getAddress().toString() + ":" + p.getPort() + " em " +
-//                (endTime - beginTime) + " miliseg");
-
-            if (arrivalRate > 0) {
-                // Tempo de espera entre gerações de pacotes - D (intervalo fixo)
-                final double interval = (1.0 / arrivalRate);
-                // Tempo de espera entre gerações de pacotes - M (intervalo exponencial negativo)
-                //interval = -1.0/ARRIVAL_RATE*Math.log(Math.random());
-                Thread.sleep((long) (interval * 1000.0)); // Conversão para miliseg.
-            }
         }
     }
 
-    private static byte[] createBytes(int msgSize) {
+    public static byte[] createBytes(int msgSize) {
         final byte[] data = new byte[msgSize];
         for (int j = 0; j < msgSize; j++) {
             data[j] = 'B';

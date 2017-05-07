@@ -1,13 +1,12 @@
 package pt.iscte_iul.redes_digitais.trabalho2.lab5;
 
-import pt.iscte_iul.redes_digitais.trabalho2.emissor.EmissorApp;
+import pt.iscte_iul.redes_digitais.trabalho2.emissor_cenario_1.EmissorApp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -59,7 +58,7 @@ public class mySocketClient extends mySocket {
             myPDUbytes, myPDUbytes.length, myIDU.getSocketAddress());
 
         // Implementação da recepcao de PDU de tipo R
-        final byte[] rdata = new byte[myPDU.DATA_SHIFT];
+        final byte[] rdata = new byte[myPDU.HEADER_SIZE];
         final DatagramPacket rUDP = new DatagramPacket(rdata, rdata.length);
         // tempo em que foi enviado e contagem única
         final long timeSent = System.currentTimeMillis();
