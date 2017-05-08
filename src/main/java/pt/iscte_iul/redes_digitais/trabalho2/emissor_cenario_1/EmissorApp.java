@@ -10,13 +10,11 @@ import static java.lang.String.format;
 public class EmissorApp {
 
     public static final int NMSG = 250;
-    private static long totalTime = 0;
 
     public static void main(String[] args)
         throws UnknownHostException, InterruptedException, SocketException {
 //        System.out.println(Arrays.toString(args));
-        final double arrivalRate = Double.valueOf(args[0]);
-        final Integer msgSize = Integer.valueOf(args[1]);
+        final Integer msgSize = Integer.valueOf(args[0]);
         final byte[] data = createBytes(msgSize);
 
         // Local SAP - lo; SAP destino . 
@@ -37,7 +35,7 @@ public class EmissorApp {
         InetAddress IPdestino = InetAddress.getByName("127.0.0.2");
         InetSocketAddress SAPdestino = new InetSocketAddress(IPdestino, 30000);
 
-        sendData(localSocket, SAPdestino, data, arrivalRate);
+        sendData(localSocket, SAPdestino, data);
         localSocket.join();
 
         System.out.println(format("Total time: %dms", localSocket.totalTime));
@@ -49,7 +47,7 @@ public class EmissorApp {
 
     private static void sendData(
         mySocketClient localSocket, InetSocketAddress SAPdestino,
-        byte[] data, double arrivalRate
+        byte[] data
     ) throws UnknownHostException, InterruptedException {
 
         // Envio de NMSG mensagens com um tamanho de args[1] bytes cada

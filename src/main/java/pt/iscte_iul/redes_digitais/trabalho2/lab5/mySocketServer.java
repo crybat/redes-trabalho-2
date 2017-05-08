@@ -28,10 +28,6 @@ public class mySocketServer extends mySocket {
                 queue.put(p.getIDU());
                 counter++;
 
-                /*
-                @TODO envio contínuo de ack enquanto der erro de timeout
-                @TODO capturar dados para análise?
-                 */
                 // Implementacao da parte Report do protocolo
                 if ((counter % REPORT_INTERVAL) == 0) { // N.o de PDU recebidas é multiplo
                     // Criar uma PDU Report
