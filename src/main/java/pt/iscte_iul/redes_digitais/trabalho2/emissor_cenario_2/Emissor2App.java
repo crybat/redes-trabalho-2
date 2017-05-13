@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Random;
 
 import static java.lang.String.format;
 
@@ -29,11 +30,13 @@ public class Emissor2App {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        final byte[] data = createBytes(Integer.valueOf(args[0]) + myPDU.HEADER_SIZE);
+        final Integer dataSize = Integer.valueOf(args[0]);
+        final byte[] data = createBytes(dataSize + myPDU.HEADER_SIZE);
         // Identificação do SAP local
         final InetAddress loIP = InetAddress.getByName("127.0.0.1");
         // Local SAP - lo
-        final InetSocketAddress lo = new InetSocketAddress(loIP, 20000);
+        final int port = 20000 + new Random().nextInt(20000) + dataSize;
+        final InetSocketAddress lo = new InetSocketAddress(loIP, port);
         // Criação e binding do soket
         final Socket localSocket = new Socket();
         localSocket.bind(lo);
@@ -60,6 +63,7 @@ public class Emissor2App {
         assert b[0] == 'C';
         assert readBytes == 1;
         // Fecho da ligação
+        localSocket.close();
         System.out.println("Fecho da ligação!");
         System.out.println(format("Tempo total: %d ms", System.currentTimeMillis() - startTime));
     }
