@@ -27,9 +27,11 @@ public class EmissorApp {
         lo = new InetSocketAddress(loIP, 20000);
 
         // Criação e binding do soket
-        localSocket = new mySocketClient(lo);
+        final int timeout = (int) (Double.parseDouble(args[1]) * 1000);
+        localSocket = new mySocketClient(lo, timeout);
         System.out.println("LocalIP: " + localSocket.getLocalAddress().toString());
         System.out.println("LocalPort: " + localSocket.getLocalPort());
+        System.out.println("Timeout: " + timeout + " ms");
 
 
         InetAddress IPdestino = InetAddress.getByName("127.0.0.2");

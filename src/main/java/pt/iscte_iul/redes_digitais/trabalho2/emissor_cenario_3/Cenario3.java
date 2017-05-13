@@ -8,8 +8,9 @@ public class Cenario3 {
         final String[] arrivalRates = new String[] {
             "0.1", "0.25", "0.5", "0.75"
         };
+        final String timeout = "0.0902";
         for (String arrivalRate : arrivalRates) {
-            Emissor3App.main(new String[]{arrivalRate});
+            Emissor3App.main(new String[]{arrivalRate, timeout});
             System.out.println("-----");
         }
     }

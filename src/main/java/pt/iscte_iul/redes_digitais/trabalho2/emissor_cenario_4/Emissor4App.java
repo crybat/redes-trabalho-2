@@ -32,7 +32,8 @@ public class Emissor4App {
         // Local SAP - lo; SAP destino .
         final InetSocketAddress lo = new InetSocketAddress(loIP, 20000);
         // Local socket - localSocket
-        final mySocketClient localSocket = new mySocketClient(lo);
+        final int timeout = (int) (Double.parseDouble(args[1]) * 1000);
+        final mySocketClient localSocket = new mySocketClient(lo, timeout);
         System.out.println("LocalIP: " + localSocket.getLocalAddress().toString());
         System.out.println("LocalPort: " + localSocket.getLocalPort());
         System.out.println(format("PDU Size: %d bits; Data size: %d bits", pduSize, DATA_SIZE * 8));

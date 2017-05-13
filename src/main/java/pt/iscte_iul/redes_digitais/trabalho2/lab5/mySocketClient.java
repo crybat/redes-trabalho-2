@@ -25,6 +25,11 @@ public class mySocketClient extends mySocket {
         local.setSoTimeout(WAIT_R);
     }
 
+    public mySocketClient(InetSocketAddress localAddress, int timeout) throws SocketException {
+        super(localAddress, "./sender.data");
+        local.setSoTimeout(timeout);
+    }
+
     public void run() {
         long startTime = 0;
         try {
