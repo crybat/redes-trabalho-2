@@ -43,6 +43,7 @@ public class mySocketClient extends mySocket {
             e.printStackTrace();
         } finally {
             totalTime = System.currentTimeMillis() - startTime;
+            local.close();
         }
     }
 
