@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo ipfw flush
+yes y | sudo ipfw flush
 
 echo ""
 echo "Rb: "         $1
