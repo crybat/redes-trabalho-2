@@ -17,26 +17,48 @@ public class Cenario1 {
             "2000"
         };
         final String[] timeouts = new String[] {
-            "0.0522",
-            "0.0542",
-            "0.0602",
-            "0.0702",
-            "0.0902",
-            "0.1502",
-            "0.2502",
-            "0.4502"
+            "0.0584",
+            "0.0604",
+            "0.0664",
+            "0.0764",
+            "0.0964",
+            "0.1564",
+            "0.2564",
+            "0.4564",
         };
+//        10^-5
+//        final String[][] ipfw = new String[][] {
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.002077848677 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.002875871137 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.005266111562 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.00923711966 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.01713164198 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.04043978264 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.07806486132 0.001279187541"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.1489469436 0.001279187541"},
+//        };
+//        10^-4
+//        final String[][] ipfw = new String[][] {
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.02058619071 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.02839063202 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.05143279693 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.08862847183 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.1587014101 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.3382190317 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.5564038235 0.01271906031"},
+//            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.8006873627 0.01271906031"},
+//        };
+//        0
         final String[][] ipfw = new String[][] {
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.002716317715 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.003513829601 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.005902540753 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.009871008207 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.01776047963 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.04105370777 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.07865471398 0.001279187541"},
-            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0.149491446 0.001279187541"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
+            {"/bin/bash","-c","echo P@ssw0rd | sudo -S ./config-link.sh 200000 5 0 0"},
         };
-
 
         for (int i = 0; i < sizes.length; i++) {
             System.out.println("Pacote " + sizes[i] + " bytes");
